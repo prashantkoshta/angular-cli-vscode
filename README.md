@@ -18,9 +18,6 @@ You have to installed following software before use of this.
 ## Release Notes
 
 This release include only ng command for angular2 based applications.
-
-### 0.0.2
-
 Command line approach for angular-cli.
 
 **Enjoy!**

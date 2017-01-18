@@ -83,7 +83,20 @@ export function activate(context: vscode.ExtensionContext) {
     });
 
     vscode.commands.registerCommand('angularcliextension.build', () => {
-        terminal.sendText("ng build");
+        let project = vscode.window.showQuickPick([
+            "",
+            "--target=production --environment=prod",
+            "--prod --env=prod",
+            "--prod",
+            "--target=development --environment=dev",
+            "--dev --e=dev",
+            "--dev"
+            ]).then(
+            (data) => {
+                   terminal.sendText("ng build "+data);
+                }
+        )
+        
     });
 
     vscode.commands.registerCommand('angularcliextension.test', () => {
