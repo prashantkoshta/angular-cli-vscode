@@ -12,8 +12,8 @@ You have to installed following software before use of this.
 1. nodejs
 2. npm install -g angular-cli
 
-## ng commands
-[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/DGb3ingQRv4/0.jpg)](https://www.youtube.com/watch?v=DGb3ingQRv4)
+## Watch ng commands video
+[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/fwCPaWge7oE/0.jpg)](https://www.youtube.com/watch?v=fwCPaWge7oE&autoplay=1)
 
 ## Release Notes
 
