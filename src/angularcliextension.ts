@@ -1,6 +1,6 @@
 'use strict';
 import * as vscode from 'vscode'
-import { window, workspace, TextEditor } from 'vscode';
+import { window, workspace, TextEditor,Uri } from 'vscode';
 import {NgComponent} from "./com/devcli/commands/ngcomponent";
 import {NgDirective} from "./com/devcli/commands/ngdirective";
 import {NgPipe} from "./com/devcli/commands/ngpipe";
@@ -16,10 +16,17 @@ export function activate(context: vscode.ExtensionContext) {
     let activity_terminal:vscode.Terminal = vscode.window.createTerminal("ng");
     terminal.show(true);
 
-    vscode.commands.registerCommand('angularcliextension.ngnew', () => {
+    vscode.commands.registerCommand('angularcliextension.ngnew', (args) => {
         vscode.window.showInputBox({ placeHolder: 'name of your project'}).then(
             (data) => {
                     terminal.sendText("ng new "+data);
+                    /*let uri = Uri.parse('file://'+workspace.rootPath+"/"+data);
+                    setInterval( function(){
+                        console.log(uri,workspace);
+                        vscode.commands.executeCommand('vscode.openFolder', uri);
+                        //terminal.sendText("npm install");
+                    },10000); */
+                   
                 }
         )   
     });
