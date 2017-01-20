@@ -21,6 +21,7 @@ export class NgComponent implements ICommand {
                         vscode.window.showInputBox({ placeHolder: 'name of component'}).then(
                             (data) => {
                                     let loc:string = v+"/"+data;
+                                    if(data!=undefined)
                                     terminal.sendText("ng g component "+loc);
                                 }
                         )  
@@ -38,6 +39,7 @@ export class NgComponent implements ICommand {
         let disposable = vscode.commands.registerCommand('angularcliextension.component', () => {
             vscode.window.showInputBox({ placeHolder: 'name of component (Note - #components support relative path generation)'}).then(
                 (data) => {
+                        if(data!=undefined)
                         terminal.sendText("ng g component "+data);
                     }
             )  

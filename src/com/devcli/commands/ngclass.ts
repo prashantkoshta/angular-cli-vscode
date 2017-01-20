@@ -21,6 +21,7 @@ export class NgClass implements ICommand {
                         vscode.window.showInputBox({ placeHolder: 'name of class'}).then(
                             (data) => {
                                     let loc:string = v+"/"+data;
+                                    if(data!=undefined)
                                     terminal.sendText("ng g class "+loc);
                                 }
                         )  
@@ -38,6 +39,7 @@ export class NgClass implements ICommand {
         let disposable = vscode.commands.registerCommand('angularcliextension.class', () => {
             vscode.window.showInputBox({ placeHolder: 'name of class'}).then(
                 (data) => {
+                        if(data!=undefined)
                         terminal.sendText("ng g class "+data);
                     }
             )

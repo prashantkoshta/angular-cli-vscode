@@ -21,6 +21,7 @@ export class NgService implements ICommand {
                         vscode.window.showInputBox({ placeHolder: 'name of service (Note - #service support relative path generation)'}).then(
                             (data) => {
                                     let loc:string = v+"/"+data;
+                                    if(data!=undefined)
                                     terminal.sendText("ng g service "+loc);
                                 }
                         )  
@@ -38,6 +39,7 @@ export class NgService implements ICommand {
         let disposable = vscode.commands.registerCommand('angularcliextension.service', () => {
             vscode.window.showInputBox({ placeHolder: 'name of service (Note - #service support relative path generation)'}).then(
                 (data) => {
+                        if(data!=undefined)
                         terminal.sendText("ng g service "+data);
                     }
             )

@@ -21,6 +21,7 @@ export class NgDirective implements ICommand {
                         vscode.window.showInputBox({ placeHolder: 'name of directive (Note - #directive support relative path generation)'}).then(
                             (data) => {
                                     let loc:string = v+"/"+data;
+                                    if(data!=undefined)
                                     terminal.sendText("ng g directive "+loc);
                                 }
                         )  
@@ -38,6 +39,7 @@ export class NgDirective implements ICommand {
         let disposable = vscode.commands.registerCommand('angularcliextension.directive', () => {
             vscode.window.showInputBox({ placeHolder: 'name of directive (Note - #directive support relative path generation)'}).then(
                 (data) => {
+                        if(data!=undefined)
                         terminal.sendText("ng g directive "+data);
                     }
             ) 

@@ -21,6 +21,7 @@ export class NgPipe implements ICommand {
                         vscode.window.showInputBox({ placeHolder: 'name of pipe (Note - #pipe support relative path generation)'}).then(
                             (data) => {
                                     let loc:string = v+"/"+data;
+                                    if(data!=undefined)
                                     terminal.sendText("ng g pipe "+loc);
                                 }
                         )  
@@ -38,6 +39,7 @@ export class NgPipe implements ICommand {
         let disposable = vscode.commands.registerCommand('angularcliextension.pipe', () => {
             vscode.window.showInputBox({ placeHolder: 'name of pipe (Note - #pipe support relative path generation)'}).then(
                 (data) => {
+                        if(data!=undefined)
                         terminal.sendText("ng g pipe "+data);
                     }
             )

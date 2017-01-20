@@ -21,6 +21,7 @@ export class NgEnum implements ICommand {
                         vscode.window.showInputBox({ placeHolder: 'name of enum'}).then(
                             (data) => {
                                     let loc:string = v+"/"+data;
+                                    if(data!=undefined)
                                     terminal.sendText("ng g enum "+loc);
                                 }
                         )  
@@ -38,6 +39,7 @@ export class NgEnum implements ICommand {
         let disposable = vscode.commands.registerCommand('angularcliextension.enum', () => {
             vscode.window.showInputBox({ placeHolder: 'name of enum'}).then(
                 (data) => {
+                        if(data!=undefined)
                         terminal.sendText("ng g enum "+data);
                     }
             )

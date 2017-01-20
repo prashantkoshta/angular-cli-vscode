@@ -21,12 +21,12 @@ export class NgModule implements ICommand {
                         vscode.window.showInputBox({ placeHolder: 'name of module'}).then(
                             (data) => {
                                     let loc:string = v+"/"+data;
+                                    if(data!=undefined)
                                     terminal.sendText("ng g module "+loc);
                                 }
                         )  
                     },
                     e => { 
-                        console.log("Error:",e);
                         vscode.window.showErrorMessage(e);
                     },
                     () => { }
@@ -39,6 +39,7 @@ export class NgModule implements ICommand {
         let disposable = vscode.commands.registerCommand('angularcliextension.module', () => {
             vscode.window.showInputBox({ placeHolder: 'name of module'}).then(
                 (data) => {
+                        if(data!=undefined)
                         terminal.sendText("ng g module "+data);
                     }
             )

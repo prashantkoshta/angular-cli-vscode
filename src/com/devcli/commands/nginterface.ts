@@ -21,6 +21,7 @@ export class NgInterface implements ICommand {
                         vscode.window.showInputBox({ placeHolder: 'name of interface'}).then(
                             (data) => {
                                     let loc:string = v+"/"+data;
+                                    if(data!=undefined)
                                     terminal.sendText("ng g interface "+loc);
                                 }
                         )  
@@ -38,6 +39,7 @@ export class NgInterface implements ICommand {
         let disposable = vscode.commands.registerCommand('angularcliextension.interface', () => {
             vscode.window.showInputBox({ placeHolder: 'name of interface'}).then(
                 (data) => {
+                        if(data!=undefined)
                         terminal.sendText("ng g interface "+data);
                     }
             )
