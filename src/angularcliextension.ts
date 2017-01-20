@@ -1,5 +1,14 @@
 'use strict';
 import * as vscode from 'vscode'
+import { window, workspace, TextEditor } from 'vscode';
+import {NgComponent} from "./com/devcli/commands/ngcomponent";
+import {NgDirective} from "./com/devcli/commands/ngdirective";
+import {NgPipe} from "./com/devcli/commands/ngpipe";
+import {NgEnum} from "./com/devcli/commands/ngenum";
+import {NgInterface} from "./com/devcli/commands/nginterface";
+import {NgService} from "./com/devcli/commands/ngservice";
+import {NgClass} from "./com/devcli/commands/ngclass";
+import {NgModule} from "./com/devcli/commands/ngmodule";
 
 
 export function activate(context: vscode.ExtensionContext) {
@@ -7,7 +16,7 @@ export function activate(context: vscode.ExtensionContext) {
     terminal.show(true);
 
     vscode.commands.registerCommand('angularcliextension.ngnew', () => {
-        let project = vscode.window.showInputBox({ placeHolder: 'name of your project'}).then(
+        vscode.window.showInputBox({ placeHolder: 'name of your project'}).then(
             (data) => {
                     terminal.sendText("ng new "+data);
                 }
@@ -18,72 +27,33 @@ export function activate(context: vscode.ExtensionContext) {
         terminal.sendText("ng serve");
     });
 
-    vscode.commands.registerCommand('angularcliextension.component', () => {
-        let project = vscode.window.showInputBox({ placeHolder: 'name of component (Note - #components support relative path generation)'}).then(
-            (data) => {
-                    terminal.sendText("ng g component "+data);
-                }
-        )  
-    });
+    context.subscriptions.push(new NgComponent().regCommand(terminal));
+    context.subscriptions.push(new NgComponent().regMenuCommand(terminal));
+    
+    context.subscriptions.push(new NgDirective().regCommand(terminal));
+    context.subscriptions.push(new NgDirective().regMenuCommand(terminal));
 
-    vscode.commands.registerCommand('angularcliextension.directive', () => {
-        let project = vscode.window.showInputBox({ placeHolder: 'name of directive (Note - #directive support relative path generation)'}).then(
-            (data) => {
-                    terminal.sendText("ng g directive "+data);
-                }
-        ) 
-    });
+    context.subscriptions.push(new NgPipe().regCommand(terminal));
+    context.subscriptions.push(new NgPipe().regMenuCommand(terminal));
 
-    vscode.commands.registerCommand('angularcliextension.pipe', () => {
-        let project = vscode.window.showInputBox({ placeHolder: 'name of pipe (Note - #pipe support relative path generation)'}).then(
-            (data) => {
-                    terminal.sendText("ng g pipe "+data);
-                }
-        )
-    });
+    context.subscriptions.push(new NgService().regCommand(terminal));
+    context.subscriptions.push(new NgService().regMenuCommand(terminal));
+        
+    context.subscriptions.push(new NgClass().regCommand(terminal));
+    context.subscriptions.push(new NgClass().regMenuCommand(terminal));
 
-    vscode.commands.registerCommand('angularcliextension.service', () => {
-        let project = vscode.window.showInputBox({ placeHolder: 'name of service (Note - #service support relative path generation)'}).then(
-            (data) => {
-                    terminal.sendText("ng g service "+data);
-                }
-        )
-    });
+    context.subscriptions.push(new NgInterface().regCommand(terminal));
+    context.subscriptions.push(new NgInterface().regMenuCommand(terminal));
 
-    vscode.commands.registerCommand('angularcliextension.class', () => {
-         let project = vscode.window.showInputBox({ placeHolder: 'name of class'}).then(
-            (data) => {
-                    terminal.sendText("ng g class "+data);
-                }
-        )
-    });
+    context.subscriptions.push(new NgEnum().regCommand(terminal));
+    context.subscriptions.push(new NgEnum().regMenuCommand(terminal));
 
-    vscode.commands.registerCommand('angularcliextension.interface', () => {
-        let project = vscode.window.showInputBox({ placeHolder: 'name of interface'}).then(
-            (data) => {
-                    terminal.sendText("ng g interface "+data);
-                }
-        )
-    });
+    context.subscriptions.push(new NgModule().regCommand(terminal));
+    context.subscriptions.push(new NgModule().regMenuCommand(terminal));
 
-    vscode.commands.registerCommand('angularcliextension.enum', () => {
-        let project = vscode.window.showInputBox({ placeHolder: 'name of enum'}).then(
-            (data) => {
-                    terminal.sendText("ng g enum "+data);
-                }
-        )
-    });
-
-    vscode.commands.registerCommand('angularcliextension.module', () => {
-        let project = vscode.window.showInputBox({ placeHolder: 'name of module'}).then(
-            (data) => {
-                    terminal.sendText("ng g module "+data);
-                }
-        )
-    });
 
     vscode.commands.registerCommand('angularcliextension.build', () => {
-        let project = vscode.window.showQuickPick([
+        vscode.window.showQuickPick([
             "",
             "--target=production --environment=prod",
             "--prod --env=prod",
@@ -110,7 +80,8 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 // this method is called when your extension is deactivated
-export function deactivate() {
+export function deactivate(args) {
     
 }
+
 
