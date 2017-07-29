@@ -3,7 +3,7 @@
   "displayName": "angular-cli",
   "description": "Run angular from vscode commandline.",
   "icon": "images/angular.png",
-  "version": "1.0.2",
+  "version": "1.2.0",
   "publisher": "pkosta2006",
   "license": "SEE LICENSE IN LICENSE.md",
   "bugs": {
